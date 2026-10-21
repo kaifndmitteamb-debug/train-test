@@ -1,0 +1,3 @@
+# Requirements for local load testing tool (load_test.py) only.
+# Do NOT include in production server requirements.txt.
+requests>=2.31.0

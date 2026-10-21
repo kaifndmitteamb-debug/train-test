@@ -21,3 +21,20 @@ Set the following environment variables in your Render service dashboard:
 - `GET /health`: Returns `{"status": "ok"}`
 - `GET /db-test`: Queries PostgreSQL for version using `DATABASE_URL`
 - `GET /cache-test`: Sets and gets a key in Upstash Redis
+- `GET /benchmark`: Measures uptime, DB connection time, DB query average time (10 runs), and Redis set/get average time (10 runs)
+- `GET /stream`: Server-Sent Events stream sending current time and counter every 2 seconds (up to 15 minutes)
+- `GET /seed?n=5000`: Seeds the `trains` table with `n` dummy records (default 5000, max 20000) using `execute_values`
+- `GET /query-test`: Executes 3 queries on `trains` (count, select by train_no, ILIKE search) and returns latency in ms, total rows, and table size
+
+## Load Testing
+
+A separate tool `load_test.py` is included for concurrent load testing.
+
+```bash
+# Install load test requirements separately:
+pip install -r requirements-loadtest.txt
+
+# Run concurrent test:
+python load_test.py <BASE_URL>
+```
+
